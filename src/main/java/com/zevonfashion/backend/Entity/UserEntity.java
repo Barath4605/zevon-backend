@@ -1,25 +1,27 @@
 package com.zevonfashion.backend.Entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 
 @Entity
+@Table(name = "users")
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long id;
 
-    @Size(min = 1, max = 20)
-    @Column(nullable = false, name = "displayName")
+    @Column(name = "display_name", nullable = false, length = 20)
     private String displayName;
 
-    @Column(nullable = false, name = "email", unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Size(min = 8, max = 255)
-    @Column(nullable = false, name = "password_hash")
+    @Column(name = "password_hash", nullable = false, length = 255)
     private String passwordHash;
 
+    @OneToOne(mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private CartEntity cart;
 }
+

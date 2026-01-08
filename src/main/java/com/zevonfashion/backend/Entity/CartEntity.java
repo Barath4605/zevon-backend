@@ -10,7 +10,8 @@ public class CartEntity {
     @Column(nullable = false, updatable = false, unique = true, name = "cart_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", unique = true, nullable = false)
     private UserEntity user;
 
 }
