@@ -14,4 +14,19 @@ public class CartEntity {
     @JoinColumn(name = "user_id", unique = true, nullable = false)
     private UserEntity user;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 }
